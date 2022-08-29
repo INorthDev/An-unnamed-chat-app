@@ -1,0 +1,573 @@
+        -:    0:Source:C:/Users/ahmet/CLionProjects/userAPI/main.cpp
+        -:    0:Graph:C:\Users\ahmet\CLionProjects\userAPI\cmake-build-debug-coverage\CMakeFiles\untitled2.dir\main.cpp.gcno
+        -:    0:Data:C:\Users\ahmet\CLionProjects\userAPI\cmake-build-debug-coverage\CMakeFiles\untitled2.dir\main.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#include <iostream>
+        -:    2:#include <utility>
+        -:    3:#include <vector>
+        -:    4:#include <string>
+        -:    5:#include <algorithm>
+        -:    6:
+        -:    7:using namespace std;
+        -:    8:
+        -:    9:
+        -:   10:class User
+        -:   11:{
+        -:   12:    protected:
+        -:   13:        string display_name;
+        -:   14:        int cur_id;
+        -:   15:    public:
+        -:   16:        static int id;
+        -:   17:
+function _ZN4User9getCur_idEv called 2 returned 100% blocks executed 100%
+        2:   18:        int getCur_id()
+        -:   19:        {
+        2:   20:            return cur_id;
+        2:   20-block  0
+        -:   21:        }
+        -:   22:
+function _ZN4User15getDisplay_NameB5cxx11Ev called 2 returned 100% blocks executed 100%
+        2:   23:        string getDisplay_Name()
+        -:   24:        {
+        2:   25:            return display_name;
+        2:   25-block  0
+call    0 returned 2
+        -:   26:        }
+        -:   27:
+        -:   28:        void changeDisplay_Name(string new_name)
+        -:   29:        {
+        -:   30:            display_name = std::move(new_name);
+        -:   31:        }
+        -:   32:
+function _ZN4UserC1ENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 2 returned 100% blocks executed 100%
+        2:   33:    User(string name): display_name(std::move(name))
+        2:   33-block  0
+call    0 returned 2
+call    1 returned 2
+        -:   34:  {
+        2:   35:        cur_id = id;
+        2:   36:        id++;
+        2:   37:  }
+        -:   38:};
+        -:   39:
+        -:   40:int User::id = 1;
+        -:   41:
+        -:   42:class Comment
+        -:   43:{
+        -:   44:    protected:
+        -:   45:        User author;
+        -:   46:        string message;
+        -:   47:        int cur_id;
+        -:   48:        vector<Comment> replies;
+        -:   49:
+function _ZeqRK7CommentS1_ called 1 returned 100% blocks executed 75%
+        1:   50:        friend bool operator == (const Comment& com1, const Comment& com2)
+        -:   51:        {
+        1:   52:            if(com1.cur_id == com2.cur_id)
+        1:   52-block  0
+branch  0 taken 1 (fallthrough)
+branch  1 taken 0
+        -:   53:            {
+        1:   54:                return true;
+        1:   54-block  0
+        -:   55:            }
+    #####:   56:            return false;
+    %%%%%:   56-block  0
+        -:   57:        }
+        -:   58:    public:
+        -:   59:        static int id;
+        -:   60:
+function _ZN7Comment10getRepliesEv called 1 returned 100% blocks executed 100%
+        1:   61:        vector<Comment> getReplies()
+        -:   62:        {
+        1:   63:            return replies;
+        1:   63-block  0
+call    0 returned 1
+        -:   64:        }
+        -:   65:
+function _ZN7Comment10getMessageB5cxx11Ev called 2 returned 100% blocks executed 100%
+        2:   66:        string getMessage()
+        -:   67:        {
+        2:   68:            return message;
+        2:   68-block  0
+call    0 returned 2
+        -:   69:        }
+        -:   70:
+function _ZN7Comment9getAuthorEv called 4 returned 100% blocks executed 100%
+        4:   71:        User getAuthor()
+        -:   72:        {
+        4:   73:            return author;
+        4:   73-block  0
+call    0 returned 4
+        -:   74:        }
+        -:   75:
+function _ZN7Comment9sendReplyERKS_ called 1 returned 100% blocks executed 100%
+        1:   76:        void sendReply(const Comment& reply)
+        -:   77:        {
+        1:   78:            replies.push_back(reply);
+        1:   78-block  0
+call    0 returned 1
+        1:   79:        }
+        -:   80:
+        -:   81:        void editComment(string new_message)
+        -:   82:        {
+        -:   83:            message = std::move(new_message);
+        -:   84:        }
+        -:   85:
+function _ZN7CommentC1E4UserNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESt6vectorIS_SaIS_EE called 2 returned 100% blocks executed 100%
+        2:   86:    Comment(User au, string m, vector<Comment> reps): author(std::move(au)), message(std::move(m))
+        2:   86-block  0
+call    0 returned 2
+call    1 returned 2
+call    2 returned 2
+call    3 returned 2
+call    4 returned 2
+        -:   87:    {
+        2:   88:        cur_id = id;
+        2:   89:        replies = std::move(reps);
+call    0 returned 2
+call    1 returned 2
+        -:   90:
+        2:   91:        id++;
+        2:   92:    }
+        -:   93:};
+        -:   94:
+        -:   95:int Comment::id = 1;
+        -:   96:
+        -:   97:class Content
+        -:   98:{
+        -:   99:    private:
+        -:  100:        string display_name;
+        -:  101:        int cur_id;
+        -:  102:        vector<Comment> logs;
+        -:  103:    public:
+        -:  104:        static int id;
+        -:  105:
+function _ZN7Content15getDisplay_NameB5cxx11Ev called 1 returned 100% blocks executed 100%
+        1:  106:        string getDisplay_Name()
+        -:  107:        {
+        1:  108:            return display_name;
+        1:  108-block  0
+call    0 returned 1
+        -:  109:        }
+        -:  110:
+function _ZNK7Content9getCur_IdEv called 1 returned 100% blocks executed 100%
+        1:  111:        [[nodiscard]] int getCur_Id() const
+        -:  112:        {
+        1:  113:            return cur_id;
+        1:  113-block  0
+        -:  114:        }
+        -:  115:
+function _ZN7Content9sendReplyERK7CommentS2_ called 1 returned 100% blocks executed 100%
+        1:  116:        void sendReply(const Comment& comment, const Comment& reply)
+        -:  117:        {
+        1:  118:            logs.at(findIndex(comment)).sendReply(reply);
+        1:  118-block  0
+call    0 returned 1
+call    1 returned 1
+call    2 returned 1
+        1:  119:        }
+        -:  120:
+function _ZN7Content11sendCommentERK7Comment called 1 returned 100% blocks executed 100%
+        1:  121:        void sendComment(const Comment& comment)
+        -:  122:        {
+        1:  123:            logs.push_back(comment);
+        1:  123-block  0
+call    0 returned 1
+        1:  124:        }
+        -:  125:
+        -:  126:        void deleteComment(Comment& comment)
+        -:  127:        {
+        -:  128:            logs.erase(logs.begin()+findIndex(comment));
+        -:  129:        }
+        -:  130:
+function _ZN7Content9findIndexERK7Comment called 1 returned 100% blocks executed 80%
+        1:  131:        int findIndex(const Comment& com)
+        -:  132:        {
+       1*:  133:            for(int i=0; i<logs.size(); i++)
+        1:  133-block  0
+    %%%%%:  133-block  1
+        1:  133-block  2
+call    0 returned 1
+branch  1 taken 1
+branch  2 taken 0 (fallthrough)
+        -:  134:            {
+        1:  135:                if(logs.at(i) == com)
+        1:  135-block  0
+call    0 returned 1
+call    1 returned 1
+branch  2 taken 1 (fallthrough)
+branch  3 taken 0
+        -:  136:                {
+        1:  137:                    return i;
+        1:  137-block  0
+        -:  138:                }
+        -:  139:            }
+    #####:  140:            return -1;
+    %%%%%:  140-block  0
+        -:  141:        }
+        -:  142:
+function _ZN7Content14displayContentEv called 1 returned 100% blocks executed 65%
+        1:  143:        void displayContent()
+        -:  144:        {
+        1:  145:            cout << getDisplay_Name() << '[' << getCur_Id() << ']' << endl;
+        1:  145-block  0
+call    0 returned 1
+call    1 returned 1
+branch  2 taken 1 (fallthrough)
+branch  3 taken 0 (throw)
+        1:  145-block  1
+call    4 returned 1
+branch  5 taken 1 (fallthrough)
+branch  6 taken 0 (throw)
+        1:  145-block  2
+call    7 returned 1
+call    8 returned 1
+branch  9 taken 1 (fallthrough)
+branch 10 taken 0 (throw)
+        1:  145-block  3
+call   11 returned 1
+branch 12 taken 1 (fallthrough)
+branch 13 taken 0 (throw)
+        1:  145-block  4
+call   14 returned 1
+branch 15 taken 1 (fallthrough)
+branch 16 taken 0 (throw)
+        1:  145-block  5
+call   17 returned 1
+    $$$$$:  145-block  6
+call   18 never executed
+    $$$$$:  145-block  7
+call   19 never executed
+        2:  146:            for(auto cur : logs)
+call    0 returned 1
+call    1 returned 1
+        1:  146-block  0
+call    2 returned 1
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+call    6 returned 1
+        2:  146-block  1
+call    7 returned 2
+branch  8 taken 1
+branch  9 taken 1 (fallthrough)
+        -:  147:            {
+        1:  148:                cout << '\t' << cur.getAuthor().getDisplay_Name() << '[' << cur.getAuthor().getCur_id() << ']' << " - " << cur.getMessage() << endl;
+        1:  148-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:  148-block  1
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+        1:  148-block  2
+call    6 returned 1
+branch  7 taken 1 (fallthrough)
+branch  8 taken 0 (throw)
+        1:  148-block  3
+call    9 returned 1
+branch 10 taken 1 (fallthrough)
+branch 11 taken 0 (throw)
+        1:  148-block  4
+call   12 returned 1
+branch 13 taken 1 (fallthrough)
+branch 14 taken 0 (throw)
+        1:  148-block  5
+call   15 returned 1
+branch 16 taken 1 (fallthrough)
+branch 17 taken 0 (throw)
+        1:  148-block  6
+call   18 returned 1
+call   19 returned 1
+branch 20 taken 1 (fallthrough)
+branch 21 taken 0 (throw)
+        1:  148-block  7
+call   22 returned 1
+branch 23 taken 1 (fallthrough)
+branch 24 taken 0 (throw)
+        1:  148-block  8
+call   25 returned 1
+branch 26 taken 1 (fallthrough)
+branch 27 taken 0 (throw)
+        1:  148-block  9
+call   28 returned 1
+branch 29 taken 1 (fallthrough)
+branch 30 taken 0 (throw)
+        1:  148-block 10
+call   31 returned 1
+branch 32 taken 1 (fallthrough)
+branch 33 taken 0 (throw)
+        1:  148-block 11
+call   34 returned 1
+branch 35 taken 1 (fallthrough)
+branch 36 taken 0 (throw)
+        1:  148-block 12
+call   37 returned 1
+call   38 returned 1
+call   39 returned 1
+call   40 returned 1
+    $$$$$:  148-block 13
+call   41 never executed
+    $$$$$:  148-block 14
+    $$$$$:  148-block 15
+call   42 never executed
+    $$$$$:  148-block 16
+    $$$$$:  148-block 17
+call   43 never executed
+    $$$$$:  148-block 18
+    $$$$$:  148-block 19
+call   44 never executed
+    $$$$$:  148-block 20
+        2:  149:                for(auto rep : cur.getReplies())
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:  149-block  0
+call    3 returned 1
+call    4 returned 1
+        1:  149-block  1
+call    5 returned 1
+call    6 returned 1
+branch  7 taken 1 (fallthrough)
+branch  8 taken 0 (throw)
+call    9 returned 1
+        2:  149-block  2
+call   10 returned 2
+branch 11 taken 1
+branch 12 taken 1 (fallthrough)
+        -:  150:                {
+        1:  151:                    cout << "\t\t" << rep.getAuthor().getDisplay_Name() << '[' << rep.getAuthor().getCur_id() << ']' << " - " << rep.getMessage() << endl;
+        1:  151-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:  151-block  1
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+        1:  151-block  2
+call    6 returned 1
+branch  7 taken 1 (fallthrough)
+branch  8 taken 0 (throw)
+        1:  151-block  3
+call    9 returned 1
+branch 10 taken 1 (fallthrough)
+branch 11 taken 0 (throw)
+        1:  151-block  4
+call   12 returned 1
+branch 13 taken 1 (fallthrough)
+branch 14 taken 0 (throw)
+        1:  151-block  5
+call   15 returned 1
+branch 16 taken 1 (fallthrough)
+branch 17 taken 0 (throw)
+        1:  151-block  6
+call   18 returned 1
+call   19 returned 1
+branch 20 taken 1 (fallthrough)
+branch 21 taken 0 (throw)
+        1:  151-block  7
+call   22 returned 1
+branch 23 taken 1 (fallthrough)
+branch 24 taken 0 (throw)
+        1:  151-block  8
+call   25 returned 1
+branch 26 taken 1 (fallthrough)
+branch 27 taken 0 (throw)
+        1:  151-block  9
+call   28 returned 1
+branch 29 taken 1 (fallthrough)
+branch 30 taken 0 (throw)
+        1:  151-block 10
+call   31 returned 1
+branch 32 taken 1 (fallthrough)
+branch 33 taken 0 (throw)
+        1:  151-block 11
+call   34 returned 1
+branch 35 taken 1 (fallthrough)
+branch 36 taken 0 (throw)
+        1:  151-block 12
+call   37 returned 1
+call   38 returned 1
+call   39 returned 1
+call   40 returned 1
+    $$$$$:  151-block 13
+call   41 never executed
+    $$$$$:  151-block 14
+    $$$$$:  151-block 15
+call   42 never executed
+    $$$$$:  151-block 16
+    $$$$$:  151-block 17
+call   43 never executed
+    $$$$$:  151-block 18
+    $$$$$:  151-block 19
+call   44 never executed
+    $$$$$:  151-block 20
+        2:  152:                }
+call    0 returned 1
+        1:  152-block  0
+call    1 returned 1
+    $$$$$:  152-block  1
+call    2 never executed
+    $$$$$:  152-block  2
+call    3 never executed
+        1:  153:            }
+call    0 returned 1
+    $$$$$:  153-block  0
+call    1 never executed
+        1:  154:        }
+        1:  154-block  0
+        -:  155:
+function _ZN7ContentC1ESt6vectorI7CommentSaIS1_EENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 1 returned 100% blocks executed 100%
+        1:  156:    Content(vector<Comment> lgs, string dn): logs(std::move(lgs)), display_name(std::move(dn))
+        1:  156-block  0
+call    0 returned 1
+call    1 returned 1
+call    2 returned 1
+call    3 returned 1
+        -:  157:    {
+        1:  158:        cur_id = id;
+        1:  159:        id++;
+        1:  160:    }
+        -:  161:};
+        -:  162:
+        -:  163:int Content::id = 1;
+        -:  164:
+function main called 1 returned 100% blocks executed 51%
+        1:  165:int main()
+        -:  166:{
+        -:  167:
+        1:  168:    vector<Comment> mesajlar;
+        1:  168-block  0
+call    0 returned 1
+        -:  169:
+        2:  170:    User ali = User("Ali");
+call    0 returned 1
+call    1 returned 1
+branch  2 taken 1 (fallthrough)
+branch  3 taken 0 (throw)
+        1:  170-block  0
+call    4 returned 1
+call    5 returned 1
+    $$$$$:  170-block  1
+        2:  171:    User mehmet = User("Mehmet");
+call    0 returned 1
+call    1 returned 1
+branch  2 taken 1 (fallthrough)
+branch  3 taken 0 (throw)
+        1:  171-block  0
+call    4 returned 1
+call    5 returned 1
+    $$$$$:  171-block  1
+        2:  172:    Content sinif_grubu = Content(mesajlar, "50-F FBI SUBESI");
+call    0 returned 1
+call    1 returned 1
+branch  2 taken 1 (fallthrough)
+branch  3 taken 0 (throw)
+        1:  172-block  0
+call    4 returned 1
+branch  5 taken 1 (fallthrough)
+branch  6 taken 0 (throw)
+        1:  172-block  1
+call    7 returned 1
+call    8 returned 1
+call    9 returned 1
+    $$$$$:  172-block  2
+    $$$$$:  172-block  3
+        -:  173:
+        1:  174:    vector<Comment> cvplr;
+call    0 returned 1
+        -:  175:
+        2:  176:    Comment alinin_mesaji = Comment(ali, "Sa", cvplr);
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:  176-block  0
+call    3 returned 1
+call    4 returned 1
+branch  5 taken 1 (fallthrough)
+branch  6 taken 0 (throw)
+        1:  176-block  1
+call    7 returned 1
+branch  8 taken 1 (fallthrough)
+branch  9 taken 0 (throw)
+        1:  176-block  2
+call   10 returned 1
+call   11 returned 1
+call   12 returned 1
+call   13 returned 1
+    $$$$$:  176-block  3
+    $$$$$:  176-block  4
+    $$$$$:  176-block  5
+        -:  177:
+        1:  178:    sinif_grubu.sendComment(alinin_mesaji);
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:  179:    sinif_grubu.sendReply(alinin_mesaji, Comment(mehmet, "As", cvplr));
+        1:  179-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:  179-block  1
+call    3 returned 1
+call    4 returned 1
+branch  5 taken 1 (fallthrough)
+branch  6 taken 0 (throw)
+        1:  179-block  2
+call    7 returned 1
+branch  8 taken 1 (fallthrough)
+branch  9 taken 0 (throw)
+        1:  179-block  3
+call   10 returned 1
+call   11 returned 1
+branch 12 taken 1 (fallthrough)
+branch 13 taken 0 (throw)
+        1:  179-block  4
+call   14 returned 1
+call   15 returned 1
+call   16 returned 1
+call   17 returned 1
+call   18 returned 1
+    $$$$$:  179-block  5
+call   19 never executed
+    $$$$$:  179-block  6
+    $$$$$:  179-block  7
+call   20 never executed
+    $$$$$:  179-block  8
+    $$$$$:  179-block  9
+call   21 never executed
+    $$$$$:  179-block 10
+    $$$$$:  179-block 11
+call   22 never executed
+    $$$$$:  179-block 12
+    $$$$$:  179-block 13
+call   23 never executed
+    $$$$$:  179-block 14
+        1:  180:    sinif_grubu.displayContent();
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:  181:    return 0;
+        1:  182:}
+        1:  182-block  0
+call    0 returned 1
+call    1 returned 1
+call    2 returned 1
+call    3 returned 1
+call    4 returned 1
+call    5 returned 1
+    $$$$$:  182-block  1
+call    6 never executed
+    $$$$$:  182-block  2
+call    7 never executed
+    $$$$$:  182-block  3
+call    8 never executed
+    $$$$$:  182-block  4
+call    9 never executed
+    $$$$$:  182-block  5
+call   10 never executed
+    $$$$$:  182-block  6
+call   11 never executed
