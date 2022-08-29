@@ -214,7 +214,7 @@ int main()
     sinif_grubu.sendComment(alinin_mesaji);
     sinif_grubu.sendReply(alinin_mesaji, Comment(mehmet, "As", cvplr));
     sinif_grubu.displayContent(true);
-    sinif_grubu.editComment(alinin_mesaji, "As yazan gay", ali);
+    sinif_grubu.editComment(alinin_mesaji, "As yazan sus", ali);
     sinif_grubu.displayContent(true);
     return 0;
 }
